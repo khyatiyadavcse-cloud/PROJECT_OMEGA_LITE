@@ -188,3 +188,11 @@ def test_29_narrative_generator():
     ng = RiskNarrativeGenerator()
     res = ng.generate_narrative("Finance-PC-07", 87, "high", "outdated", 18)
     assert "Finance-PC-07 is currently classified as HIGH RISK" in res["risk_narrative"]
+
+def test_30_db_connector():
+    from omega_ml_suite.db_connector import DatabaseConnector
+    db = DatabaseConnector()
+    res = db.export_ml_scores_to_sql()
+    assert res["status"] == "SQL EXPORT SUCCESSFUL"
+    assert res["records_exported"] == 50
+
